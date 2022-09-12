@@ -129,7 +129,7 @@ For detailed examples on how to use this library, please check the `examples` di
     - Depression: `k` < 0
 - `tau`: a list of time constants for each kinetic
     - Short-Term: 5 < `tau` < 50
-    - Long-Term: 600 < `tau` < 900
+    - Long-Term: 600 < `tau` < 1200
 
 ## Citing DARELA
 
