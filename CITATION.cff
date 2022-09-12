@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite it as below.
+type: software
+authors:
+  - given-names: 'N'
+    family-names: Shashaank
+title: "DARELA"
+version: 1.0
+preferred-citation:
+  type: article
+  authors:
+    - given-names: 'N'
+      family-names: Shashaank
+    - given-names: Mahalakshmi
+      family-names: Somayaji
+    - given-names: Mattia
+      family-names: Miotto
+    - given-names: "Eugene V."
+      family-names: Mosharov
+    - given-names: "David A."
+      family-names: Knowles
+    - given-names: Giancarlo
+      family-names: Ruocco
+    - given-names: "David L."
+      family-names: Sulzer
+  doi: 10.1101/2022.05.04.490695
+  journal: "bioRxiv"
+  month: 5
+  title: >-
+    Novel Computational Models of Evoked Dopamine
+    Release In Vivo Measured by Fast Scan Cyclic
+    Voltammetry Quantify the Regulation of Presynaptic
+    Kinetics by Synucleins.
+  year: 2022
+    
