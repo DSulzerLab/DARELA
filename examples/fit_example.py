@@ -17,7 +17,7 @@ release = {
 # if initial values are not specified
 kinetic = {
     "ktypes": ["stf", "std", "ltd"],
-    "k": [None, -0.003, -0.0011],
+    "p": [None, -0.003, -0.0011],
     "tau": [None, 12.5, 900],
 }
 
@@ -47,11 +47,11 @@ def main():
     t_data, y_data = load_data()
 
     # Fit some of the parameters
-    model.fit(y_data, t_data, ['Vm', 'DAp', 'k1', 'tau1'])
+    model.fit(y_data, t_data, ['Vm', 'DAp', 'p1', 'tau1'])
 
     # Solve model and plot solution
     t = anp.linspace(0, 5, 51)
-    y = model.solve(t)
+    _, y = model.solve(t)
     plt.plot(t, y)
     plt.plot(t_data, y_data)
     plt.show()

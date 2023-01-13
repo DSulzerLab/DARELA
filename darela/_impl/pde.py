@@ -24,7 +24,7 @@ class PDEModel(BaseModel):
         self.dR = 1 # in μm
         self.nR = int(self.Rl / self.dR) + 1
         self.R = anp.linspace(0, self.Rl, self.nR)
-        self.Ds = anp.heaviside(((self.Rl - self.Rd) - self.R).round(2), 1.0) # Dead space discretization with Heaviside theta
+        self.eta = anp.heaviside(((self.Rl - self.Rd) - self.R).round(2), 1.0) # Dead space discretization with Heaviside theta
         
         # Temporal discretization
         self.dt = (self.dR ** 2) / (2 * self.D)
@@ -66,7 +66,7 @@ class PDEModel(BaseModel):
             if self.kinetics: release *= A
             if self.discrete: release = release * self.P[1:-1]
             DAT = (self.params['Vm'] * DA[1:-1, t - 1]) / (DA[1:-1, t - 1] + self.params['Km'])
-            W[1:-1] = self.Ds[1:-1] * (release - DAT) * self.dt 
+            W[1:-1] = self.eta[1:-1] * (release - DAT) * self.dt 
             DA[1:-1, t] += W[1:-1]
 
             # Boundary conditions and negative values
@@ -118,7 +118,7 @@ class PDEModel(BaseModel):
             if self.kinetics: release *= A
             if self.discrete: release = release * self.P[1:-1]
             DAT = (self.params['Vm'] * DA[1:-1, t - 1]) / (DA[1:-1, t - 1] + self.params['Km'])
-            W = self.Ds[1:-1] * (release - DAT) * self.dt 
+            W = self.eta[1:-1] * (release - DAT) * self.dt 
             DA_dt += W
 
             # Boundary conditions and negative values

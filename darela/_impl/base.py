@@ -30,17 +30,17 @@ class BaseModel:
         # Assert that kinetic types are specified
         assert 'ktypes' in params 
 
-        # Assert that length of kick components/time constants are equal
+        # Assert that length of plasticity factors/time constants are equal
         # to number of kinetic types specified
-        assert len(params['ktypes']) == len(params['k'])
+        assert len(params['ktypes']) == len(params['p'])
         assert len(params['ktypes']) == len(params['tau'])
 
-        # Load each kick component/time constant as separate parameter from lists
+        # Load each plasticity factor/time constant as separate parameter from lists
         self.params['ktypes'] = params['ktypes'].copy()
         for i in range(len(params['ktypes'])):
-            k_key = f'k{i + 1}'
+            p_key = f'p{i + 1}'
             tau_key = f'tau{i + 1}'
-            self.params[k_key] = params['k'][i]
+            self.params[p_key] = params['p'][i]
             self.params[tau_key] = params['tau'][i]
 
     # Fit requested parameters to given FSCV trace
@@ -50,7 +50,7 @@ class BaseModel:
         
         # Adjust kinetic parameters to indicate short-term/long-term or facilitation/depression
         adjusted_params = params.copy()
-        kinetic_names = ['k', 'tau']
+        kinetic_names = ['p', 'tau']
         for i in range(len(adjusted_params)):
             if adjusted_params[i][:-1] in kinetic_names and adjusted_params[i][-1].isnumeric():
                 index = int(adjusted_params[i][-1]) - 1
@@ -121,20 +121,20 @@ class BaseModel:
     # Combine individual kick components/time constants into individual vectors
     # Used for solving model
     def _set_kinetics(self):
-        k_vector = []
+        p_vector = []
         tau_vector = []
         for i in range(len(self.params['ktypes'])):
-            k_vector.append(self.params[f'k{i + 1}'])
+            p_vector.append(self.params[f'p{i + 1}'])
             tau_vector.append(self.params[f'tau{i + 1}'])
-        self.params['k'] = anp.array(k_vector)
+        self.params['p'] = anp.array(p_vector)
         self.params['tau'] = anp.array(tau_vector)
     
     # DA kinetics ODE
     # dHj/dt
     def _solve_kinetics(self, H: anp.ndarray, S: float):
-        kick = self.f * self.params['k'] * H * S
+        plasticity = self.f * self.params['p'] * H * S
         decay = (1 - S) * (1 - H) / self.params['tau']
-        H_dt = H + self.dt * (kick + decay)
+        H_dt = H + self.dt * (plasticity + decay)
         return H_dt
     
     # DA electrode coupled ODE system

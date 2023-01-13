@@ -15,7 +15,7 @@ release = {
 
 kinetic = {
     "ktypes": ["stf", "std", "ltd"],
-    "k": [0.0105, -0.003, -0.0011],
+    "p": [0.0105, -0.003, -0.0011],
     "tau": [7.5, 12.5, 900],
 }
 
@@ -38,7 +38,7 @@ def main():
 
     # Solve model and plot solution
     t = anp.linspace(0, 5, 51)
-    y = model.solve(t)
+    _, y = model.solve(t)
     plt.plot(t, y)
     plt.show()
 

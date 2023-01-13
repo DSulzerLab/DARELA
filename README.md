@@ -124,9 +124,9 @@ For detailed examples on how to use this library, please check the `examples` di
     - `std`: short-term depression
     - `ltf`: long-term facilitation
     - `ltd`: long-term depression
-- `k`: a list of kick components for each kinetic
-    - Facilitation: `k` > 0
-    - Depression: `k` < 0
+- `p`: a list of plasticity factors for each kinetic
+    - Facilitation: `p` > 0
+    - Depression: `p` < 0
 - `tau`: a list of time constants for each kinetic
     - Short-Term: 5 < `tau` < 50
     - Long-Term: 600 < `tau` < 1200

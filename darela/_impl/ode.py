@@ -53,8 +53,9 @@ class ODEModel(BaseModel):
             DAe[t], GammaDA[t] = self._solve_electrode(DAs[t - 1], DAe[t - 1], GammaDA[t - 1])
         
         # Interpolate for requested time points
+        DAs = anp.interp(time, self.t, DAs)
         DAe = anp.interp(time, self.t, DAe)
-        return DAe
+        return DAs, DAe
     
     # Integrate ODE model over requested time series
     # Used when running fitting engine

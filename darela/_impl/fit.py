@@ -19,13 +19,13 @@ def _interval_constraint(lower, upper):
 
 # Shared parameter constraints and prior settings
 shared_settings = {
-    "kstf": [_interval_constraint(0, 0.025), [0.0065, 0.003]],
+    "pstf": [_interval_constraint(0, 0.025), [0.0065, 0.003]],
     "taustf": [_interval_constraint(5, 50), [7.5, 1]],
-    "kstd": [_interval_constraint(-0.025, 0), [-0.0031, 0.0003]],
+    "pstd": [_interval_constraint(-0.025, 0), [-0.0031, 0.0003]],
     "taustd": [_interval_constraint(5, 50), [30.833, 13.57]],
-    "kltf": [_interval_constraint(0, 0.025), [0.0003, 0.0005]],
+    "pltf": [_interval_constraint(0, 0.025), [0.0003, 0.0005]],
     "taultf": [_interval_constraint(600, 1200), [900, 30]],
-    "kltd": [_interval_constraint(-0.025, 0), [-0.0003, 0.0005]],
+    "pltd": [_interval_constraint(-0.025, 0), [-0.0003, 0.0005]],
     "taultd": [_interval_constraint(600, 1200), [900, 30]],
     "Vm": [_lower_constraint(2.0), [5.0, 1.5]],
     "Km": [_lower_constraint(0.1), [0.2, 0.01]],
