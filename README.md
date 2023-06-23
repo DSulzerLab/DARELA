@@ -136,5 +136,5 @@ For detailed examples on how to use this library, please check the `examples` di
 If you find this library useful in your research, please cite our paper:
 
 ```
-N Shashaank, M Somayaji, M Miotto, EV Mosharov, DA Knowles, G Ruocco, DL Sulzer. 2022. Novel Computational Models of Evoked Dopamine Release In Vivo Measured by Fast Scan Cyclic Voltammetry Quantify the Regulation of Presynaptic Kinetics by Synucleins. bioRxiv. https://doi.org/10.1101/2022.05.04.490695 
+N Shashaank, M Somayaji, M Miotto, EV Mosharov, EA Makowicz, DA Knowles, G Ruocco, DL Sulzer. 2023. Computational models of dopamine release measured by fast scan cyclic voltammetry in vivo. PNAS Nexus 2(3). https://doi.org/10.1093/pnasnexus/pgad044 
 ```
