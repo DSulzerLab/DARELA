@@ -34,7 +34,7 @@ class PDEModel(BaseModel):
         super().fit(data, time, params, self.discrete)
 
     # Integrate PDE model over requested time series
-    def solve(self, time):
+    def solve(self, time, kinetics_state = None):
         super().inc_solve(time)
         
         # Initialize arrays
@@ -44,8 +44,12 @@ class PDEModel(BaseModel):
         DAe = anp.zeros(self.nt)
         GammaDA = anp.zeros(self.nt)
         if self.kinetics: 
-            H = anp.zeros((3, self.nt))
-            H[:, 0] = 1.
+            H = anp.zeros((len(self.params['ktypes']), self.nt))
+            if kinetics_state is not None: # Input state for resuming kinetics
+                assert(len(kinetics_state) == len(self.params['ktypes']))
+                H[:, 0] = kinetics_state
+            else: # Default state
+                H[:, 0] = 1.
         
         # Integrate PDEs + ODEs
         for t in range(1, self.nt):

@@ -89,7 +89,8 @@ class BaseModel:
         self._set_stimulation(time[-1])
 
         # Initialize kinetics
-        self._set_kinetics()
+        if self.kinetics:
+            self._set_kinetics()
     
     # Incomplete function for solving model
     # Used when running fitting engine
@@ -101,7 +102,8 @@ class BaseModel:
         self._set_fit(theta)
         
         # Initialize kinetics
-        self._set_kinetics()
+        if self.kinetics:
+            self._set_kinetics()
     
     # Set parameters to current estimated value
     # Called from fitting engine for each iteration

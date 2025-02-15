@@ -21,7 +21,7 @@ class ODEModel(BaseModel):
         super().fit(data, time, params, False)
      
     # Integrate ODE model over requested time series
-    def solve(self, time: anp.ndarray):
+    def solve(self, time: anp.ndarray, kinetics_state = None):
         super().inc_solve(time)
 
         # Initialize arrays
@@ -29,8 +29,12 @@ class ODEModel(BaseModel):
         DAe = anp.zeros(self.t.shape)
         GammaDA = anp.zeros(self.t.shape)
         if self.kinetics:
-            H = anp.zeros((3, self.t.shape[0]))
-            H[:, 0] = 1.
+            H = anp.zeros((len(self.params['ktypes']), self.t.shape[0]))
+            if kinetics_state is not None: # Input state for resuming kinetics
+                assert(len(kinetics_state) == len(self.params['ktypes']))
+                H[:, 0] = kinetics_state
+            else: # Default state
+                H[:, 0] = 1.
 
         # Integrate ODEs
         for t in range(1, self.t.shape[0]):
